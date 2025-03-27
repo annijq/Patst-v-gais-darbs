@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Environmental Impact Calculator - Overconsumption Education Hub{% endblock %}
+
+{% block content %}
+<h1>Environmental Impact Calculator</h1>
+
+<div class="info-box">
+    <p>This simple calculator helps you estimate your carbon footprint based on your lifestyle choices. Understanding your impact is the first step toward making sustainable changes.</p>
+</div>
+
+{% if not results %}
+<form method="POST" action="/calculator">
+    <div class="card">
+        <h2>Transportation</h2>
+        
+        <div class="form-group">
+            <label for="car_type">What type of car do you drive?</label>
+            <select id="car_type" name="car_type" required>
+                <option value="None/Don't drive">None/Don't drive</option>
+                <option value="Small car (gasoline)">Small car (gasoline)</option>
+                <option value="Small car (diesel)">Small car (diesel)</option>
+                <option value="Medium car (gasoline)">Medium car (gasoline)</option>
+                <option value="Medium car (diesel)">Medium car (diesel)</option>
+                <option value="Large car/SUV (gasoline)">Large car/SUV (gasoline)</option>
+                <option value="Large car/SUV (diesel)">Large car/SUV (diesel)</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Electric">Electric</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="car_distance">How many kilometers do you drive per week?</label>
+            <input type="number" id="car_distance" name="car_distance" min="0" value="0" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="flights_per_year">How many flights do you take per year?</label>
+            <input type="number" id="flights_per_year" name="flights_per_year" min="0" value="0" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="flight_distance">What is your typical flight distance?</label>
+            <select id="flight_distance" name="flight_distance" required>
+                <option value="Short (< 3 hours)">Short (< 3 hours)</option>
+                <option value="Medium (3-6 hours)">Medium (3-6 hours)</option>
+                <option value="Long (> 6 hours)">Long (> 6 hours)</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Food & Diet</h2>
+        
+        <div class="form-group">
+            <label for="diet_type">What best describes your diet?</label>
+            <select id="diet_type" name="diet_type" required>
+                <option value="Meat with every meal">Meat with every meal</option>
+                <option value="Meat-heavy">Meat-heavy (daily meat)</option>
+                <option value="Average omnivore">Average omnivore (meat several times per week)</option>
+                <option value="Flexitarian">Flexitarian (meat occasionally)</option>
+                <option value="Pescatarian">Pescatarian (fish but no meat)</option>
+                <option value="Vegetarian">Vegetarian (no meat or fish)</option>
+                <option value="Vegan">Vegan (no animal products)</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Home Energy</h2>
+        
+        <div class="form-group">
+            <label for="home_size">What type of home do you live in?</label>
+            <select id="home_size" name="home_size" required>
+                <option value="Small apartment">Small apartment</option>
+                <option value="Large apartment">Large apartment</option>
+                <option value="Small house">Small house</option>
+                <option value="Medium house">Medium house</option>
+                <option value="Large house">Large house</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="household_size">How many people live in your household?</label>
+            <input type="number" id="household_size" name="household_size" min="1" value="1" required>
+        </div>
+    </div>
+    
+    <button type="submit">Calculate My Footprint</button>
+</form>
+
+{% else %}
+<div class="card">
+    <h2>Your Carbon Footprint Results</h2>
+    
+    <div {% if results.is_sustainable %}class="success-box"{% elif results.is_below_average %}class="info-box"{% else %}class="warning-box"{% endif %}>
+        <h3>Total Carbon Footprint: {{ results.carbon_footprint }} kg CO₂e per year</h3>
+        <p>
+            {% if results.is_sustainable %}
+                Great job! Your carbon footprint is below the sustainable level.
+            {% elif results.is_below_average %}
+                Your carbon footprint is below the global average, but there's still room for improvement.
+            {% else %}
+                Your carbon footprint is above the global average. Consider the suggestions below to reduce your impact.
+            {% endif %}
+        </p>
+    </div>
+    
+    <div class="chart-container">
+        <h3>Carbon Footprint Breakdown</h3>
+        <img src="data:image/png;base64,{{ results.carbon_breakdown_plot }}" alt="Carbon Footprint Breakdown" style="max-width: 100%;">
+        <p>Transportation: {{ results.transport_emissions }} kg CO₂e</p>
+        <p>Food & Diet: {{ results.food_emissions }} kg CO₂e</p>
+        <p>Home Energy: {{ results.home_emissions }} kg CO₂e</p>
+    </div>
+    
+    <div class="chart-container">
+        <h3>How Your Footprint Compares</h3>
+        <img src="data:image/png;base64,{{ results.comparison_plot }}" alt="Footprint Comparison" style="max-width: 100%;">
+    </div>
+</div>
+
+<div class="card">
+    <h2>Ways to Reduce Your Footprint</h2>
+    
+    <h3>Transportation</h3>
+    <ul>
+        <li>Walk, bike, or use public transportation for shorter trips</li>
+        <li>Consider carpooling or car-sharing options</li>
+        <li>Combine errands to reduce trips</li>
+        <li>Consider a more fuel-efficient vehicle for your next purchase</li>
+        <li>Reduce air travel or offset your flights</li>
+    </ul>
+    
+    <h3>Food & Diet</h3>
+    <ul>
+        <li>Reduce meat consumption, especially red meat</li>
+        <li>Choose locally grown and seasonal foods</li>
+        <li>Minimize food waste by planning meals and using leftovers</li>
+        <li>Grow some of your own food if possible</li>
+    </ul>
+    
+    <h3>Home Energy</h3>
+    <ul>
+        <li>Improve insulation and seal air leaks</li>
+        <li>Use energy-efficient appliances and lighting</li>
+        <li>Adjust your thermostat (lower in winter, higher in summer)</li>
+        <li>Wash clothes in cold water and line-dry when possible</li>
+        <li>Consider renewable energy options if available</li>
+    </ul>
+</div>
+
+<p><a href="/calculator">Calculate Again</a> or explore our <a href="/solutions">Solutions</a> page for more ways to reduce your environmental impact.</p>
+{% endif %}
+
+{% endblock %}

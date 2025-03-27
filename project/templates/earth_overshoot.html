@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Earth Overshoot Day - Overconsumption Education Hub{% endblock %}
+
+{% block content %}
+<h1>Earth Overshoot Day</h1>
+
+<div class="info-box">
+    <p>Earth Overshoot Day marks the date when humanity's demand for ecological resources and services in a given year exceeds what Earth can regenerate in that year.</p>
+</div>
+
+<h2>What is Earth Overshoot Day?</h2>
+<p>Earth Overshoot Day is calculated by dividing the planet's biocapacity (the amount of ecological resources Earth is able to generate that year) by humanity's Ecological Footprint (humanity's demand for that year), and multiplying by 365, the number of days in a year:</p>
+
+<div class="card">
+    <p style="text-align: center; font-weight: bold;">(Earth's Biocapacity / Humanity's Ecological Footprint) × 365 = Earth Overshoot Day</p>
+</div>
+
+<p>When this day falls earlier in the year, it means we're consuming resources faster and operating at a greater ecological deficit.</p>
+
+<h2>Earth Overshoot Day Over Time</h2>
+<p>The date of Earth Overshoot Day has moved steadily earlier over the past 50 years:</p>
+
+<div class="chart-container">
+    <img src="data:image/png;base64,{{ overshoot_plot_url }}" alt="Earth Overshoot Day Over Time" style="max-width: 100%;">
+</div>
+
+<div class="grid-container">
+    <div class="card">
+        <h3>Understanding Overconsumption</h3>
+        <p><strong>Overconsumption</strong> is the excessive consumption or use of goods and services (energy, land, water or materials) that cause harm or detrimental effects to humans and/or the environment, namely by exceeding the carrying capacity and life supporting systems of the planet and its ecosystems.</p>
+        <p>Earth Overshoot Day marks the date when humanity has used all the biological resources that Earth regenerates during the entire year.</p>
+    </div>
+    <div class="card">
+        <h3>What This Means</h3>
+        <p>In 2024, Earth Overshoot Day fell on August 1st (day 214). This means that humanity used as many ecological resources as Earth can regenerate in the entire year by the 214th day of the year.</p>
+        <p>For the rest of the year, we operate in ecological deficit, depleting resources and accumulating waste (primarily carbon dioxide in the atmosphere).</p>
+    </div>
+</div>
+
+<h2>Country Comparisons</h2>
+<p>If everyone lived like citizens of certain countries, Earth Overshoot Day would fall on different dates. This visualization shows how many Earths we would need if everyone lived like citizens of different countries:</p>
+
+<div class="chart-container">
+    <img src="data:image/png;base64,{{ country_plot_url }}" alt="Countries' Ecological Footprint" style="max-width: 100%;">
+</div>
+
+<h2>Global Ecological Footprint Breakdown</h2>
+<p>The ecological footprint is made up of several components. This chart shows the percentage breakdown of humanity's global footprint:</p>
+
+<div class="chart-container">
+    <img src="data:image/png;base64,{{ pie_charts['World Average'] }}" alt="Global Ecological Footprint Breakdown" style="max-width: 100%;">
+</div>
+
+<div class="info-box">
+    <p><strong>Carbon Footprint</strong> represents the largest component of our ecological impact, highlighting the urgent need to address greenhouse gas emissions and transition to renewable energy sources.</p>
+</div>
+
+<h2>Moving the Date</h2>
+<p>The goal is to #MoveTheDate of Earth Overshoot Day back. If we moved the date back by 5 days each year, we would return to using the resources of less than one planet by 2050.</p>
+
+<div class="warning-box">
+    <p>Human economies and societies depend on the health of our planet. Living within the means of one Earth is not only environmentally necessary, but economically beneficial in the long run.</p>
+</div>
+
+<div class="quote">
+    "We cannot solve our problems with the same thinking we used when we created them." — Albert Einstein
+</div>
+
+<p>To learn more about what you can do to help move the date, visit the <a href="/solutions">Solutions</a> page or measure your impact with our <a href="/calculator">Environmental Impact Calculator</a>.</p>
+{% endblock %}

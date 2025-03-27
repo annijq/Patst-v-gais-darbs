@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Solutions - Overconsumption Education Hub{% endblock %}
+
+{% block content %}
+<h1>Solutions to Overconsumption</h1>
+
+<div class="info-box">
+    <p>While overconsumption is a complex global challenge, there are many practical steps individuals, communities, and societies can take to reduce their environmental impact and live more sustainably.</p>
+</div>
+
+<h2>Lifestyle Comparison: Environmental Impact</h2>
+<p>Different lifestyle choices can dramatically affect your environmental footprint:</p>
+
+<div class="chart-container">
+    <img src="data:image/png;base64,{{ lifestyle_plot_url }}" alt="Environmental Impact by Lifestyle Type" style="max-width: 100%;">
+</div>
+
+<h2>Practical Solutions</h2>
+
+{% for category, solutions in solutions_data.items() %}
+    <div class="card">
+        <h3>{{ category }}</h3>
+        <ul>
+            {% for solution, impact in solutions.items() %}
+                <li><strong>{{ solution }}</strong>: {{ impact }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+
+<h2>Individual Actions That Make a Difference</h2>
+
+<div class="grid-container">
+    <div class="card">
+        <h3>Mindful Consumption</h3>
+        <ul>
+            <li>Before purchasing, ask: "Do I need this? Will I use it often?"</li>
+            <li>Wait 24 hours before making non-essential purchases</li>
+            <li>Choose quality over quantity</li>
+            <li>Borrow or rent items you only need occasionally</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h3>Reduce Waste</h3>
+        <ul>
+            <li>Use reusable bags, bottles, and containers</li>
+            <li>Compost food scraps</li>
+            <li>Buy products with minimal packaging</li>
+            <li>Repair items instead of replacing them</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h3>Sustainable Living</h3>
+        <ul>
+            <li>Reduce energy usage at home</li>
+            <li>Source food locally and seasonally</li>
+            <li>Support sustainable businesses</li>
+            <li>Share resources in your community</li>
+        </ul>
+    </div>
+</div>
+
+<h2>Beyond Individual Actions</h2>
+<p>While individual choices are important, systemic changes are also necessary to address overconsumption on a global scale:</p>
+
+<ul>
+    <li><strong>Circular Economy:</strong> Supporting systems that minimize waste and maximize resource reuse</li>
+    <li><strong>Policy Reform:</strong> Advocating for regulations that promote sustainable production and consumption</li>
+    <li><strong>Education:</strong> Raising awareness about consumption impacts and sustainable alternatives</li>
+    <li><strong>Community Initiatives:</strong> Participating in local sharing economies, repair cafes, and sustainability projects</li>
+</ul>
+
+<div class="success-box">
+    <p>Remember: Every positive choice matters. Small changes by many people can lead to significant collective impact.</p>
+</div>
+
+<div class="quote">
+    "The greatest threat to our planet is the belief that someone else will save it." — Robert Swan
+</div>
+
+<p>Use our <a href="/calculator">Environmental Impact Calculator</a> to assess your current footprint and identify areas where you can make the most meaningful changes.</p>
+{% endblock %}

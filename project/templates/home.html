@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Overconsumption Education Hub{% endblock %}
+
+{% block content %}
+<h1>Understanding Overconsumption</h1>
+
+<div class="info-box">
+    <p><strong>Overconsumption</strong> is the excessive consumption or use of goods and services (energy, land, water or materials) that cause harm or detrimental effects to humans and/or the environment, namely by exceeding the carrying capacity and life supporting systems of the planet and its ecosystems.</p>
+    <p>It's a growing global concern that affects our environment, society, and future generations.</p>
+</div>
+
+<h2>The Problem at a Glance</h2>
+<div class="grid-container">
+    <div class="card">
+        <h3>Resource Depletion</h3>
+        <p>Many natural resources are being consumed faster than they can be replenished, including forests, fisheries, and freshwater sources.</p>
+    </div>
+    <div class="card">
+        <h3>Waste Generation</h3>
+        <p>Growing consumption leads to more waste, much of which is not properly recycled or disposed of, leading to pollution.</p>
+    </div>
+    <div class="card">
+        <h3>Climate Impact</h3>
+        <p>Increased production and consumption of goods contributes significantly to greenhouse gas emissions and climate change.</p>
+    </div>
+</div>
+
+<h2>Ecological Footprint vs. Biocapacity</h2>
+<p>The ecological footprint measures human demand on nature, comparing the resources people consume with the earth's ability to regenerate them.</p>
+
+<div class="chart-container">
+    <img src="data:image/png;base64,{{ eco_plot_url }}" alt="Ecological Footprint vs. Biocapacity Chart" style="max-width: 100%;">
+</div>
+
+<div class="warning-box">
+    <p>When ecological footprint exceeds biocapacity, it means we're using resources faster than they can be renewed, leading to environmental degradation.</p>
+</div>
+
+<h2>Key Facts About Overconsumption</h2>
+<ul>
+    <li>If everyone lived like the average American, we would need 5 Earths to sustain our resource use.</li>
+    <li>About 1/3 of all food produced globally is wasted.</li>
+    <li>The richest 10% of people are responsible for approximately 50% of global emissions.</li>
+    <li>Since 1970, the global population has doubled, but resource extraction has tripled.</li>
+    <li>Fast fashion leads to 92 million tons of textile waste annually.</li>
+</ul>
+
+<h2>Why This Matters</h2>
+<p>Overconsumption is not just an environmental issue—it affects social equity, economic stability, and the well-being of future generations. 
+Understanding our consumption patterns is the first step toward making positive changes.</p>
+
+<div class="quote">
+    "The Earth has enough resources for everyone's needs, but not for everyone's greed." — Mahatma Gandhi
+</div>
+
+<p>Explore the other sections of this site to learn about Earth Overshoot Day, solutions to overconsumption, and to calculate your own environmental impact.</p>
+{% endblock %}
